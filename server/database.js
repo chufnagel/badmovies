@@ -40,7 +40,7 @@ const saveFavorite = (movie, callback) => {
   });
 };
 
-const deleteFavorites = (movieId, callback) => {
+const deleteFavorite = (movieId, callback) => {
   // delete a movie from favorites in the database
   const queryStr = `DELETE FROM favorites WHERE id = '${movieId}'`;
   connection.query(queryStr, (error, success) => {
@@ -57,5 +57,5 @@ const deleteFavorites = (movieId, callback) => {
 module.exports = {
   getAllFavorites,
   saveFavorite,
-  deleteFavorites,
+  deleteFavorite,
 };
