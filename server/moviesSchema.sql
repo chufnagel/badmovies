@@ -1,14 +1,14 @@
 -- SET UP SCHEMA HERE
-DROP DATABASE IF EXISTS badmovies;
+-- DROP DATABASE IF EXISTS badmovies;
 
 CREATE DATABASE badmovies;
 
 USE badmovies;
 
 CREATE TABLE favorites (
-  id INT(20) NOT NULL,
-  title varchar(200),
-  vote_average INT(20),
+  id INT NOT NULL UNIQUE,
+  title varchar(200) not null,
+  vote_average INT(20) not null,
   vote_count INT(20),
   popularity INT(20),
   poster_path varchar(20),
@@ -17,3 +17,7 @@ CREATE TABLE favorites (
   release_date varchar(200),
   PRIMARY KEY (id)
 );
+
+/*
+mysql -u root < server/schema.sql
+*/

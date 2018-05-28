@@ -2,7 +2,14 @@ const mysql = require('mysql');
 const mysqlConfig = require('./config.js');
 const sequelize = require('sequelize');
 
-const connection = mysql.createConnection(mysqlConfig);
+const connection = mysql.createConnection({
+  host: mysqlConfig.host,
+  user: mysqlConfig.user,
+  password: mysqlConfig.password,
+  database: mysqlConfig.database,
+});
+
+connection.connect();
 
 const chalk = require('chalk');
 
@@ -55,6 +62,7 @@ const deleteFavorite = (movieId, callback) => {
 };
 
 module.exports = {
+  connection: connection,
   getAllFavorites,
   saveFavorite,
   deleteFavorite,
