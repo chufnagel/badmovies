@@ -4,8 +4,11 @@
   "description": "React Starter",
   "main": "index.js",
   "scripts": {
+    "postinstall": "npm run webpack",
+    "webpack": "./node_modules/webpack/bin/webpack.js",
     "react-dev": "webpack -d --watch",
-    "server-dev": "nodemon server/index.js"
+    "server-dev": "nodemon server/index.js",
+    "start:dev": "npm run webpack -- -w & nodemon --ignore src/ --ignore dist/ server/index.js"
   },
   "author": "Aaron Chan",
   "license": "MIT",
@@ -26,6 +29,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "body-parser": "^1.17.2",
+    "chalk": "^2.4.1",
     "express": "^4.15.0",
     "jquery": "^3.1.1",
     "mysql": "^2.15.0",
