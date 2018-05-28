@@ -33,17 +33,11 @@ const getAllFavorites = (callback) => {
   });
 };
 
-const saveFavorite = (movie, callback) => {
-  // save movie to favorites in the database
-  let queryStr = `INSERT INTO movies VALUES ( ${id}, '${title}', ${vote_average}, ${vote_count}, ${popularity}, '${poster_path}', '${backdrop_path}', '${overview}', '${release_date}');`;
-  connection.query(queryStr, (error, success) => {
-    if (error) {
-      log(errc(error));
-      callback(error, null);
-    } else {
-      log(succ(success));
-      callback(null, success);
-    }
+const saveFavorite = function(params, callback) {
+  let queryStr = 'insert into favorites(id, poster_path, title, overview, release_date, vote_average, vote_count)\
+  values(?, ?, ?, ?, ?, ?, ?)'
+  connection.query(queryStr, params, (err, results, fields) => {
+    callback(err, results, fields);
   });
 };
 

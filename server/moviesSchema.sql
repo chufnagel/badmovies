@@ -1,5 +1,5 @@
 -- SET UP SCHEMA HERE
--- DROP DATABASE IF EXISTS badmovies;
+DROP DATABASE IF EXISTS badmovies;
 
 CREATE DATABASE badmovies;
 
@@ -11,7 +11,7 @@ CREATE TABLE favorites (
   vote_average INT(20) not null,
   vote_count INT(20),
   popularity INT(20),
-  poster_path varchar(20),
+  poster_path varchar(200),
   backdrop_path varchar(200),
   overview varchar(1000),
   release_date varchar(200),

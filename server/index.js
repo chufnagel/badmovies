@@ -79,17 +79,33 @@ app.get('/faves', (req, res) => {
 });
 
 
-app.post('/save', (req, res) => {
-  const vals = [req.body.id, req.body.title, req.body.vote_average, req.body.vote_count, req.body.popularity, req.body.poster_path, req.body.backdrop_path, req.body.overview, req.body.release_date];
-  log(infoc('Request body:', req));
-  db.saveFavorite(vals, (error, results, data) => {
-    if (error) {
-      log(errc(error));
-      res.send('The server has encountered an error');
+app.post('/save', function(req, res) {
+  //extract movie obj
+  // console.log('/save post request is', req);
+  //id, poster_path, title, overview, release_date, vote_average, vote_count
+  const vals = [req.body.id, req.body.poster_path, req.body.title, req.body.overview, req.body.release_date,
+  req.body.vote_average, req.body.vote_count];
+  // console.log('req.body is', req.body.id);
+  db.saveFavorite(vals, (err, results, fields) => {
+    if (err) {
+      console.log(err);
+      res.send('Sorry, server error');
     }
     res.send(results);
   });
-});
+})
+
+// app.post('/save', (req, res) => {
+//   const vals = [req.body.id, req.body.title, req.body.vote_average, req.body.vote_count, req.body.popularity, req.body.poster_path, req.body.backdrop_path, req.body.overview, req.body.release_date];
+//   log(infoc('Request body:', req));
+//   db.saveFavorite(vals, (error, results, data) => {
+//     if (error) {
+//       log(errc(error));
+//       res.send('The server has encountered an error');
+//     }
+//     res.send(results);
+//   });
+// });
 
 app.post('/delete', (req, res) => {
   const param = [req.body.id];
